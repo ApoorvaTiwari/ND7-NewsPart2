@@ -1,6 +1,8 @@
 package com.example.apoorva.newspart2;
 
 import android.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.widget.CursorAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
@@ -83,6 +85,11 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoaderReset(Loader<List<News>> loader) {
         mNewsAdapter.clear();
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getLoaderManager().restartLoader(1, null, this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,4 +126,5 @@ public class NewsActivity extends AppCompatActivity implements LoaderManager.Loa
             getLoaderManager().initLoader(0, null, this);
         }
     }
+
 }
